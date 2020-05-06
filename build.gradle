@@ -15,8 +15,7 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'application'
 
-mainClassName= 'com.kotlinserver.Appkt'
-
+mainClassName= 'com.kotlinserver.appkt'
 task stage{
     dependsOn installDist
 }
