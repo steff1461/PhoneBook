@@ -3,9 +3,11 @@ import com.mongodb.MongoClient
 import com.mongodb.MongoClientURI
 import io.ktor.application.call
 import io.ktor.application.install
+import io.ktor.features.CORS
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
 import io.ktor.jackson.jackson
 import io.ktor.request.receiveText
 import io.ktor.response.respond
@@ -27,6 +29,13 @@ fun main(args: Array<String>) {
 
     val port= System.getenv("PORT")?.toInt() ?:23567
     embeddedServer(Netty, port) {
+
+        install(CORS){
+
+            headersOf("Access-Control-Allow-Origin", "*")
+            anyHost()
+        }
+
         install(ContentNegotiation) {
             jackson {
                 enable(SerializationFeature.INDENT_OUTPUT)
